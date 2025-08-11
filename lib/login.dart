@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:time_degnitor__project/Screen/product_list.dart';
 import 'profile.dart';
 
 class Login extends StatefulWidget {
@@ -40,7 +41,7 @@ class _LoginState extends State<Login> {
     if (!isAllowed) {
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text("Invalid username or password ❌")));
+      ).showSnackBar(SnackBar(content: Text("Invalid username or password ")));
       return;
     }
 
@@ -72,7 +73,7 @@ class _LoginState extends State<Login> {
           if (!mounted) return;
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => ProfileScreen()),
+            MaterialPageRoute(builder: (context) => UserProfileScreen()),
           );
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -169,7 +170,14 @@ class _LoginState extends State<Login> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  onPressed: _isLoading ? null : loginUser,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProductListScreen(),
+                      ),
+                    );
+                  },
                   child: _isLoading
                       ? CircularProgressIndicator(color: Colors.white)
                       : Text(

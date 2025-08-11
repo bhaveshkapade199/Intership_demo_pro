@@ -28,6 +28,7 @@ class ApiService {
         "title": title,
         "description": description,
         "price": price,
+        "thumbnail": "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
       }),
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
